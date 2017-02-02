@@ -14,8 +14,8 @@ class Robot
     "My name is #{name}"
   end
 
-  def method_missing(*_args)
-    puts 'Does not compute'
+  def method_missing(meth, *_args, &block)
+    puts "#{meth} Does not compute"
   end
 end
 
@@ -45,7 +45,9 @@ our_class = %w(Rob David Nancy Kalea Laura Dave Demetra Kendrick Phil Ben Michae
 
 roboray = [Robot, BendingUnit, ActorUnit]
 
-our_class.map { |person| roboray.sample.new(person) }
+roboclass = our_class.map { |person| roboray.sample.new(person) }
+
+roboclass.each{ |robostudent| puts "I'm #{robostudent.name} and I'm a #{robostudent.class}."}
 
 # legendary - when error for wrong method then output "does not compute"
 # man = Robot.new("charlie")
